@@ -495,6 +495,7 @@ public class SyslogAppender extends AppenderSkeleton {
 		localHostname = "UNKNOWN_HOST";
 	    }
 	}
+	System.err.println("localHostname is " + localHostname);
 	return localHostname;
     }
 
