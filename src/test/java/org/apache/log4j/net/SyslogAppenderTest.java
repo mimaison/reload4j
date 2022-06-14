@@ -380,7 +380,7 @@ public class SyslogAppenderTest extends TestCase {
 	ds.setSoTimeout(2000);
 
 	SyslogAppender appender = new SyslogAppender();
-	appender.setSyslogHost(":" + ds.getLocalPort());
+	appender.setSyslogHost("127.0.0.1:" + ds.getLocalPort());
 	appender.setName("name");
 	appender.setHeader(header);
 	PatternLayout pl = new PatternLayout("%m");
