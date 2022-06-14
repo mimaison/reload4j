@@ -376,11 +376,12 @@ public class SyslogAppenderTest extends TestCase {
 
     private static String[] log(final boolean header, final String msg, final Exception ex, final int packets)
 	    throws Exception {
+			try {
 	DatagramSocket ds = new DatagramSocket();
 	ds.setSoTimeout(2000);
-
+System.err.println("getLocalPort is " + ds.getLocalPort());
 	SyslogAppender appender = new SyslogAppender();
-	appender.setSyslogHost("127.0.0.1:" + ds.getLocalPort());
+	appender.setSyslogHost("localhost:" + ds.getLocalPort());
 	appender.setName("name");
 	appender.setHeader(header);
 	PatternLayout pl = new PatternLayout("%m");
@@ -404,6 +405,11 @@ public class SyslogAppenderTest extends TestCase {
 	}
 	ds.close();
 	return retval;
+		} catch (Exception e) {
+			System.err.println("Caught : " + e.getMessage());
+			e.printStackTrace();
+			throw e;
+		}
     }
 
     public void testActualLogging() throws Exception {
